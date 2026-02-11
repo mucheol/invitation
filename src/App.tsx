@@ -6,7 +6,6 @@ import Gallery from '@/components/Gallery/Gallery'
 import Calendar from '@/components/Calendar/Calendar'
 import Location from '@/components/Location/Location'
 import Account from '@/components/Account/Account'
-import RSVP from '@/components/RSVP/RSVP'
 import GuestBook from '@/components/GuestBook/GuestBook'
 import Share from '@/components/Share/Share'
 import Footer from '@/components/Footer/Footer'
@@ -23,7 +22,6 @@ function App() {
         <ScrollReveal><Calendar /></ScrollReveal>
         <ScrollReveal><Location /></ScrollReveal>
         <ScrollReveal><Account /></ScrollReveal>
-        <ScrollReveal><RSVP /></ScrollReveal>
         <ScrollReveal><GuestBook /></ScrollReveal>
         <ScrollReveal><Share /></ScrollReveal>
         <Footer />

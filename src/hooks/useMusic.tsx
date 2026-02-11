@@ -15,31 +15,43 @@ const MusicContext = createContext<MusicContextType>({
 export function MusicProvider({ children }: { children: ReactNode }) {
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const [isPlaying, setIsPlaying] = useState(false)
+  const hasPlayedRef = useRef(false)
 
   useEffect(() => {
-    const audio = new Audio(config.music.src)
+    const audio = new Audio()
+    audio.src = config.music.src
     audio.loop = true
-    audio.volume = 0.3
+    audio.volume = 0.1
+    audio.preload = 'auto'
     audioRef.current = audio
 
+    const tryPlay = () => {
+      if (hasPlayedRef.current) return
+      audio.play()
+        .then(() => {
+          hasPlayedRef.current = true
+          setIsPlaying(true)
+          removeListeners()
+        })
+        .catch(() => {})
+    }
+
+    const events = ['click', 'touchstart', 'scroll', 'keydown'] as const
+    const removeListeners = () => {
+      events.forEach(evt => document.removeEventListener(evt, tryPlay))
+    }
+
     if (config.music.autoPlay) {
-      const playAttempt = audio.play()
-      if (playAttempt) {
-        playAttempt
-          .then(() => setIsPlaying(true))
-          .catch(() => {
-            const playOnInteraction = () => {
-              audio.play().then(() => setIsPlaying(true)).catch(() => {})
-              document.removeEventListener('click', playOnInteraction)
-              document.removeEventListener('touchstart', playOnInteraction)
-            }
-            document.addEventListener('click', playOnInteraction)
-            document.addEventListener('touchstart', playOnInteraction)
-          })
-      }
+      // 먼저 자동 재생 시도
+      tryPlay()
+      // 실패 대비: 사용자 인터랙션 시 재생
+      events.forEach(evt =>
+        document.addEventListener(evt, tryPlay, { once: false, passive: true })
+      )
     }
 
     return () => {
+      removeListeners()
       audio.pause()
       audio.src = ''
     }

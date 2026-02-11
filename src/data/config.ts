@@ -83,10 +83,10 @@ const config: WeddingConfig = {
     relation: '장녀',
   },
   wedding: {
-    date: '2026-05-16',
+    date: '2027-10-10',
     time: '오후 2시',
     timeDetail: '토요일 오후 2시',
-    dDay: new Date('2027-05-16T14:00:00+09:00'),
+    dDay: new Date('2027-10-10T14:00:00+09:00'),
   },
   venue: {
     name: '더채플앳청담',
@@ -131,10 +131,10 @@ const config: WeddingConfig = {
     autoPlay: true,
   },
   kakao: {
-    jsKey: 'YOUR_KAKAO_JS_KEY',
+    jsKey: '376798100917bd24dbc8901bece6036a',
     shareTitle: '김철수 ♥ 이영희 결혼합니다',
-    shareDescription: '2026년 5월 16일 토요일 오후 2시\n더채플앳청담 그랜드홀',
-    shareImageUrl: '',
+    shareDescription: '2027년 10월 10일 토요일 오후 2시\n더채플앳청담 그랜드홀',
+    shareImageUrl: '/images/gallery/mainBg.png',
     shareButtonLabel: '청첩장 보기',
   },
   meta: {

@@ -22,29 +22,16 @@ export default function Location() {
   const mapRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const loadMap = () => {
-      if (!mapRef.current || !window.kakao?.maps) return
+    if (!mapRef.current || !window.kakao?.maps) return
 
-      window.kakao.maps.load(() => {
-        const position = new window.kakao.maps.LatLng(venue.lat, venue.lng)
-        const map = new window.kakao.maps.Map(mapRef.current!, {
-          center: position,
-          level: 3,
-        })
-        new window.kakao.maps.Marker({ map, position })
+    window.kakao.maps.load(() => {
+      const position = new window.kakao.maps.LatLng(venue.lat, venue.lng)
+      const map = new window.kakao.maps.Map(mapRef.current!, {
+        center: position,
+        level: 3,
       })
-    }
-
-    // Check if Kakao Maps SDK is loaded
-    if (window.kakao?.maps) {
-      loadMap()
-    } else {
-      // If SDK hasn't loaded yet, wait for it
-      const script = document.createElement('script')
-      script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${config.kakao.jsKey}&autoload=false`
-      script.onload = loadMap
-      document.head.appendChild(script)
-    }
+      new window.kakao.maps.Marker({ map, position })
+    })
   }, [venue.lat, venue.lng])
 
   return (
@@ -82,7 +69,7 @@ export default function Location() {
             카카오맵
           </a>
           <a
-            href={`nmap://route/public?dlat=${venue.lat}&dlng=${venue.lng}&dname=${encodeURIComponent(venue.name)}&appname=wedding`}
+            href={`https://map.naver.com/v5/directions/-/-/-/transit?c=${venue.lng},${venue.lat},16,0,0,0,dh&destination=${encodeURIComponent(venue.name)},${venue.lat},${venue.lng}`}
             target="_blank"
             rel="noopener noreferrer"
             className="px-4 py-2.5 text-xs bg-[#03C75A] text-white rounded-lg font-medium"

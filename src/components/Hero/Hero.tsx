@@ -11,12 +11,14 @@ export default function Hero() {
       <BokehBackground />
 
       {/* Layer 2: Cutout image of bride & groom */}
-      <img
-        src="/images/hero-cutout.png"
-        alt={`${groom.name} & ${bride.name}`}
-        className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[70vh] object-contain z-10 pointer-events-none select-none"
-        onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
-      />
+      <div className="absolute bottom-80 left-1/2 -translate-x-1/2 w-100 h-100 rounded-full overflow-hidden z-10 pointer-events-none select-none border-2 border-gold/30">
+        <img
+          src="/images/gallery/mainBg.png"
+          alt={`${groom.name} & ${bride.name}`}
+          className="w-full h-full object-cover object-[center_30%]"
+          onError={(e) => { (e.target as HTMLImageElement).parentElement!.style.display = 'none' }}
+        />
+      </div>
 
       {/* Layer 3: Text overlay */}
       <div className="relative z-20 text-center pb-16 px-4">
