@@ -54,32 +54,38 @@ export default function GuestBook() {
   }
 
   return (
-    <section className="py-16 px-6 bg-white">
+    <section className="py-16 px-6 bg-white" aria-label="방명록">
       <SectionTitle title="GUEST BOOK" subtitle="축하 메시지" />
 
       {/* Message form */}
-      <form onSubmit={handleSubmit} className="max-w-[340px] mx-auto space-y-3 mb-8">
+      <form onSubmit={handleSubmit} aria-label="축하 메시지 작성" className="max-w-[340px] mx-auto space-y-3 mb-8">
         <div className="flex gap-2">
+          <label htmlFor="guestbook-name" className="sr-only">이름</label>
           <input
+            id="guestbook-name"
             type="text"
             placeholder="이름"
             value={form.name}
             onChange={(e) => setForm({ ...form, name: e.target.value })}
-            className="flex-1 px-3 py-2.5 bg-ivory border border-gold/20 rounded-lg text-sm
+            className="w-[60%] min-w-0 px-3 py-2.5 bg-ivory border border-gold/20 rounded-lg text-sm
                        placeholder:text-charcoal/30 focus:outline-none focus:border-gold/50"
             required
           />
+          <label htmlFor="guestbook-password" className="sr-only">비밀번호</label>
           <input
+            id="guestbook-password"
             type="password"
             placeholder="비밀번호"
             value={form.password}
             onChange={(e) => setForm({ ...form, password: e.target.value })}
-            className="w-24 px-3 py-2.5 bg-ivory border border-gold/20 rounded-lg text-sm
+            className="w-[40%] min-w-0 px-3 py-2.5 bg-ivory border border-gold/20 rounded-lg text-sm
                        placeholder:text-charcoal/30 focus:outline-none focus:border-gold/50"
             required
           />
         </div>
+        <label htmlFor="guestbook-message" className="sr-only">축하 메시지</label>
         <textarea
+          id="guestbook-message"
           placeholder="축하 메시지를 남겨주세요"
           value={form.message}
           onChange={(e) => setForm({ ...form, message: e.target.value })}
@@ -100,7 +106,7 @@ export default function GuestBook() {
 
       {/* Message list */}
       {messages.length > 0 && (
-        <div className="max-w-[340px] mx-auto space-y-3 max-h-[400px] overflow-y-auto">
+        <div className="max-w-[340px] mx-auto space-y-3 max-h-[400px] overflow-y-auto" role="list" aria-label="축하 메시지 목록">
           <AnimatePresence>
             {messages.map((msg) => (
               <motion.div
@@ -108,12 +114,13 @@ export default function GuestBook() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="p-4 bg-ivory rounded-lg"
+                role="listitem"
               >
                 <div className="flex justify-between items-center mb-2">
                   <span className="text-sm font-medium text-charcoal">{msg.name}</span>
-                  <span className="text-[10px] text-charcoal/30">
+                  <time className="text-[10px] text-charcoal/30" dateTime={msg.createdAt?.toDate?.()?.toISOString()}>
                     {msg.createdAt?.toDate?.()?.toLocaleDateString('ko-KR') ?? ''}
-                  </span>
+                  </time>
                 </div>
                 <p className="text-sm text-charcoal/70 whitespace-pre-line leading-relaxed">{msg.message}</p>
               </motion.div>

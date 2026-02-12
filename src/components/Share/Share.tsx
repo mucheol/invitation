@@ -58,7 +58,7 @@ export default function Share() {
           className="w-full py-3 bg-[#FEE500] text-[#3C1E1E] rounded-lg text-sm font-medium
                      flex items-center justify-center gap-2 hover:brightness-95 transition cursor-pointer"
         >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="#3C1E1E">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#3C1E1E" aria-hidden="true">
             <path d="M12 3C6.48 3 2 6.58 2 11c0 2.84 1.87 5.33 4.67 6.77l-.72 3.57c-.05.25.23.45.45.32L10.67 18H12c5.52 0 10-3.58 10-8s-4.48-8-10-8z" />
           </svg>
           카카오톡으로 공유하기

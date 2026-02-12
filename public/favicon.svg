@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Envelope body -->
+  <rect x="6" y="18" width="52" height="36" rx="4" fill="#f5f0eb" stroke="#c9a96e" stroke-width="2"/>
+  <!-- Envelope flap -->
+  <polygon points="6,18 32,40 58,18" fill="#e8ddd3" stroke="#c9a96e" stroke-width="2" stroke-linejoin="round"/>
+  <!-- Heart -->
+  <path d="M32,30 C32,26 28,22 24,22 C20,22 18,25 18,28 C18,34 32,42 32,42 C32,42 46,34 46,28 C46,25 44,22 40,22 C36,22 32,26 32,30Z" fill="#b76e79" opacity="0.9"/>
+</svg>

@@ -24,7 +24,7 @@ export default function BokehBackground() {
   }, [])
 
   return (
-    <div className="absolute inset-0 z-0 overflow-hidden">
+    <div className="absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
       {/* Animated gradient base */}
       <div
         className="absolute inset-0"

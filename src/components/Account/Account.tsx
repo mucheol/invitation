@@ -30,6 +30,7 @@ function AccountAccordion({
     <div className="border border-gold/20 rounded-lg overflow-hidden">
       <button
         onClick={() => setIsOpen(!isOpen)}
+        aria-expanded={isOpen}
         className="w-full px-4 py-3.5 flex justify-between items-center text-sm font-medium text-charcoal bg-ivory/50 cursor-pointer"
       >
         <span>{title}</span>
@@ -37,6 +38,7 @@ function AccountAccordion({
           animate={{ rotate: isOpen ? 180 : 0 }}
           transition={{ duration: 0.2 }}
           className="text-charcoal/40"
+          aria-hidden="true"
         >
           &#9662;
         </motion.span>
